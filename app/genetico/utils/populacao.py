@@ -1,11 +1,20 @@
 import pandas as pd
 import numpy as np
 import logging
-from setup import CONFIG
-from professor import selecionar_professor
+import time
+from utils.professor import selecionar_professor 
+#from utils.setup import CONFIG
 
-
-
+CONFIG = {
+    "populacao_inicial": 5,
+    "geracoes": 2,
+    "prob_mutacao": 0.1,
+    "tamanho_torneio": 3,
+    "max_ajustes": 10,
+    "max_tentativas_geracao": 1,
+    "max_tentativas": 1, # Limite de tentativas para evitar duplicados
+    "LOG_LEVEL": "DEBUG"
+}
 def calcular_diversidade(populacao:list):
     """
     Calcula a diversidade da população com base na variação de genes.

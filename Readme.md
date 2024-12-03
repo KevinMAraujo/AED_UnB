@@ -102,17 +102,55 @@ Em Desenvolvimento
 - **Seleção**: Utiliza torneios para escolher as melhores soluções para a próxima geração.
 
 ### Métricas Monitoradas
-- Receita líquida total.
-- Uniformidade na distribuição de turmas entre professores.
-- Diversidade da população ao longo das gerações.
 
 
+#### Avaliação do Algoritmo Genético
+As métricas devem avaliar tanto a qualidade da solução quanto o desempenho computacional.
 
+##### 1. Métricas para Qualidade da Solução
+  * Fitness Médio e Melhor Fitness:
+  * Fitness médio por geração.
+  * Melhor fitness encontrado ao final.
+  
+##### 2. Diversidade da População:
+  * Avaliar a diversidade genética para garantir que o AG explore bem o espaço de soluções.
+
+##### 3. Respeito às Restrições:
+  * Percentual de indivíduos válidos em cada geração.
+  * Percentual de turmas alocadas corretamente.
+
+##### 4. Grau de Otimização (Lucro Líquido):
+  * Valor final da função objetivo: receita - custos.
+
+##### 5. Métricas para Desempenho Computacional
+* Tempo de Execução:Tempo total do AG para convergir para uma solução ou atingir o limite de gerações.
+Convergência:
+* Número de gerações até atingir o fitness ideal ou estabilidade (mudança mínima em X gerações).
+
+#### Avaliação do Algoritmo de Backtracking
+##### 1. Métricas para Qualidade da Solução
+  * Soluções Exatas: Comparar se a solução é ótima (ou seja, fitness máximo).
+##### 2. Viabilidade:
+  * Verificar se todas as restrições foram respeitadas (percentual de turmas corretamente alocadas).
+
+##### 3. Métricas para Desempenho Computacional
+* Tempo de Execução: Medir o tempo para resolver o problema completo.
+* Número de Estados Visitados: Quantidade de combinações exploradas pelo backtracking.
+* Eficiência de Poda: Percentual de estados podados graças à aplicação de restrições durante a busca.
+
+#### Comparação entre AG e BT
+##### 1. Métricas de Qualidade
+* Qualidade da Solução: Fitness do AG vs fitness da solução do BT (se o AG chegou perto da solução ótima).
+* Respeito às Restrições: Percentual de turmas alocadas corretamente em ambos.
+
+##### 2. Métricas de Desempenho
+  * Tempo de Execução: Comparar o tempo necessário para resolver o problema.
+  * Escalabilidade: Teste os dois algoritmos com volumes de dados variados (veja a seção de roteiro de testes).
 
 ## Testes
+
 Os testes incluirão:
-- **Instâncias pequenas**: Resolvidas com backtracking para validação do AG.
-- **Instâncias reais**: Dados históricos da instituição (cerca de 800 turmas) para avaliar o desempenho do AG.
+
 - **Métricas de avaliação**:
   - Receita líquida final.
   - Tempo de execução.
@@ -127,6 +165,42 @@ Os testes incluirão:
 3. **Validação Científica**:
    - Resultados apresentados com níveis e intervalos de confiança.
    - Análise de métricas como diversidade populacional no AG.
+
+
+### Roteiro de Testes e Tamanho dos Dados
+#### Cenários de Teste
+Tamanho de Dados:
+  * **Micro:** Selecionar apenas o local 3 para analise (pequeno número de turmas e professores), apenas 23 turmas.
+  * **Pequeno:** Selecionar apenas o local 3 e 9 para analise (pequeno número de turmas e professores), apenas 61 turmas.
+  * **Médio:** Selecionar os locais 3,4,5,8 e 9 para analise. Corresponde a 415 registros (51% do total aproximadamente).
+  * **Grande:** 816 registros (toda a base).
+Configurações de Regras:
+Altere restrições de carga horária e permissões (como CHMAX ou locais/cursos disponíveis).
+Execuções com Variabilidade:
+
+Testar o AG com diferentes tamanhos de população e taxas de mutação.
+Testar BT com diferentes heurísticas de ordenação (ex.: priorizar turmas maiores).
+
+#### Roteiro de Teste
+##### 1. Executar AG:
+Rodar o AG por um número fixo de gerações para cada cenário.
+Registrar métricas: fitness, tempo, diversidade, convergência.
+
+##### 2. Executar BT:
+Resolver o problema com a mesma configuração.
+Registrar métricas: tempo, número de estados visitados, eficiência de poda.
+
+##### 3. Comparar Resultados:
+Fitness do AG vs solução do BT.
+Tempo de execução.
+Percentual de turmas corretamente alocadas.
+Média de Distribuição das Turmas por Professor
+Desvio Médio da Distribuição das Turmas por Professor
+
+
+
+
+------
 
 ## Resultados Esperados
 1. Um algoritmo baseado em heurística que:

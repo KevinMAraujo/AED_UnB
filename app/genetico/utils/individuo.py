@@ -3,7 +3,7 @@ import random
 import time
 import logging
 from professor import selecionar_professor
-from setup import CONFIG
+from utils.load_env import get_env
 
 def calcular_fitness(individuo:dict, turmas:pd.DataFrame, professores:pd.DataFrame):
     """
@@ -95,7 +95,7 @@ def validar_individuo(individuo:dict, turmas:pd.DataFrame, professores:pd.DataFr
         logging.error(f"Erro Info: {e}")
         raise
 
-def selecao_torneio(populacao:list, turmas:pd.DataFrame, professores:pd.DataFrame, k=CONFIG["tamanho_torneio"]):
+def selecao_torneio(populacao:list, turmas:pd.DataFrame, professores:pd.DataFrame, k=get_env("TAMANHO_TORNEIO") ):
     """
     Seleciona um indivíduo da população usando o método de torneio.
 
@@ -120,7 +120,7 @@ def selecao_torneio(populacao:list, turmas:pd.DataFrame, professores:pd.DataFram
         logging.error(f"Erro Info: {e}")
         raise
 
-def mutar(individuo:dict, professores:pd.DataFrame, professor_local:pd.DataFrame, professor_curso:pd.DataFrame, turmas:pd.DataFrame, prob_mutacao=CONFIG["prob_mutacao"]):
+def mutar(individuo:dict, professores:pd.DataFrame, professor_local:pd.DataFrame, professor_curso:pd.DataFrame, turmas:pd.DataFrame, prob_mutacao=get_env("PROB_MUTACAO")):
     """
     Aplica mutação a um indivíduo, alterando a alocação de professores em algumas turmas.
 

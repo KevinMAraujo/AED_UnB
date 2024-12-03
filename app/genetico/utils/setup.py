@@ -1,25 +1,23 @@
 import pandas as pd
 import logging
 from datetime import datetime, timedelta
-from dotenv import load_dotenv
-
-from populacao import calcular_diversidade
-
-
+from utils.populacao import calcular_diversidade
 import os
-load_dotenv()
+
+#from dotenv import load_dotenv
+#load_dotenv()
 
 
 ### DEPOIS JOGAR PARA O .ENV
 
 CONFIG = {
-    "populacao_inicial": 30,
-    "geracoes": 70,
+    "populacao_inicial": 5,
+    "geracoes": 2,
     "prob_mutacao": 0.1,
     "tamanho_torneio": 3,
     "max_ajustes": 10,
-    "max_tentativas_geracao": 100,
-    "max_tentativas": 100, # Limite de tentativas para evitar duplicados
+    "max_tentativas_geracao": 1,
+    "max_tentativas": 1, # Limite de tentativas para evitar duplicados
     "LOG_LEVEL": "DEBUG"
 }
 
@@ -61,12 +59,27 @@ def carregar_dados():
     """
     logging.info("Carregando dados...")
     try:
-        professores = pd.read_csv('Professores.csv', delimiter=";")
-        locais = pd.read_csv('Locais.csv', delimiter=";")
-        turmas = pd.read_csv('Turmas.csv', delimiter=";")
-        cursos = pd.read_csv('Cursos.csv', delimiter=";")
-        professor_curso = pd.read_csv('ProfessorCurso.csv', delimiter=";")
-        professor_local = pd.read_csv('ProfessorLocal.csv', delimiter=";")
+        diretorio = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../data'))
+
+        professores_path = os.path.join(diretorio, 'Professores.csv')
+        turmas_path = os.path.join(diretorio, 'Turmas.csv')
+        professor_curso_path = os.path.join(diretorio, 'ProfessorCurso.csv')
+        professor_local_path = os.path.join(diretorio, 'ProfessorLocal.csv')
+
+
+        if not os.path.exists(professores_path):
+            raise FileNotFoundError(f"O arquivo {professores_path} não foi encontrado no caminho especificado.")
+        if not os.path.exists(turmas_path):
+            raise FileNotFoundError(f"O arquivo {turmas_path} não foi encontrado no caminho especificado.")
+        if not os.path.exists(professor_curso_path):
+            raise FileNotFoundError(f"O arquivo {professor_curso_path} não foi encontrado no caminho especificado.")
+        if not os.path.exists(professor_local_path):
+            raise FileNotFoundError(f"O arquivo {professor_local_path} não foi encontrado no caminho especificado.")
+        
+        professores = pd.read_csv(professores_path, delimiter=";")
+        turmas = pd.read_csv(turmas_path, delimiter=";")
+        professor_curso = pd.read_csv(professor_curso_path, delimiter=";")
+        professor_local = pd.read_csv(professor_local_path, delimiter=";")
 
         professores['VALORHORA'] = pd.to_numeric(professores['VALORHORA'], errors='coerce')
         professores['CHMIN'] = pd.to_numeric(professores['CHMIN'], errors='coerce')
@@ -76,7 +89,7 @@ def carregar_dados():
         turmas['CH_MINUTOS_SEMANA'] = pd.to_numeric(turmas['CH_MINUTOS_SEMANA'], errors='coerce')
 
         logging.info("Dados carregados com sucesso!")
-        return professores, locais, turmas, cursos, professor_curso, professor_local
+        return professores, turmas, professor_curso, professor_local
     except Exception as e:
         logging.error(f"Erro ao carregar dados: {e}")
         raise
@@ -226,3 +239,5 @@ def salvar_configuracao(nome_file, time_start, tempo_total):
         logging.info(f"Dados do tempo de execução salvos")
     except Exception as e:    
         logging.info(f'Não foi possivel salvar o arquivo: {nome_file}')
+
+        

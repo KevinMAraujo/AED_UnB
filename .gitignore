@@ -1,0 +1,15 @@
+valg/
+
+__pycache__/
+*.py[cod]
+
+.vscode/
+.idea/
+
+.DS_Store
+Thumbs.db
+
+*.log
+*.tmp
+*.bak
+*.swp

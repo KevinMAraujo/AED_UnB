@@ -15,14 +15,14 @@ def algoritmo_genetico(professores:pd.DataFrame,  turmas:pd.DataFrame, professor
     Executa o algoritmo genético para otimizar a alocação de professores às turmas.
 
     Args:
-    professores (DataFrame): Dados dos professores.
-    turmas (DataFrame): Dados das turmas.
-    professor_curso (DataFrame): Associação professor-curso.
-    professor_local (DataFrame): Associação professor-local.
-    geracoes (int): Número de gerações a serem processadas.
+        professores (DataFrame): Dados dos professores.
+        turmas (DataFrame): Dados das turmas.
+        professor_curso (DataFrame): Associação professor-curso.
+        professor_local (DataFrame): Associação professor-local.
+        geracoes (int): Número de gerações a serem processadas.
 
     Returns:
-    tuple: População final e histórico de fitness das gerações.
+        tuple: População final e histórico de fitness das gerações.
     """
     try:
         logging.info("Iniciando o programa...")
