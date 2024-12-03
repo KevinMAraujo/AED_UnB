@@ -139,6 +139,13 @@ Convergência:
 * Eficiência de Poda: Percentual de estados podados graças à aplicação de restrições durante a busca.
 
 #### Comparação entre AG e BT
+####
+* Fitness do AG vs solução do BT.
+* Tempo de execução.
+* Percentual de turmas corretamente alocadas.
+* Média de Distribuição das Turmas por Professor
+* Desvio Médio da Distribuição das Turmas por Professor
+
 ##### 1. Métricas de Qualidade
 * Qualidade da Solução: Fitness do AG vs fitness da solução do BT (se o AG chegou perto da solução ótima).
 * Respeito às Restrições: Percentual de turmas alocadas corretamente em ambos.
@@ -191,11 +198,11 @@ Resolver o problema com a mesma configuração.
 Registrar métricas: tempo, número de estados visitados, eficiência de poda.
 
 ##### 3. Comparar Resultados:
-Fitness do AG vs solução do BT.
-Tempo de execução.
-Percentual de turmas corretamente alocadas.
-Média de Distribuição das Turmas por Professor
-Desvio Médio da Distribuição das Turmas por Professor
+* Fitness do AG vs solução do BT.
+* Tempo de execução.
+* Percentual de turmas corretamente alocadas.
+* Média de Distribuição das Turmas por Professor
+* Desvio Médio da Distribuição das Turmas por Professor
 
 
 
