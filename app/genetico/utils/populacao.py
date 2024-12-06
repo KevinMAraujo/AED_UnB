@@ -3,18 +3,9 @@ import numpy as np
 import logging
 import time
 from utils.professor import selecionar_professor 
-#from utils.setup import CONFIG
+from utils.load_env import get_env
 
-CONFIG = {
-    "populacao_inicial": 5,
-    "geracoes": 2,
-    "prob_mutacao": 0.1,
-    "tamanho_torneio": 3,
-    "max_ajustes": 10,
-    "max_tentativas_geracao": 1,
-    "max_tentativas": 1, # Limite de tentativas para evitar duplicados
-    "LOG_LEVEL": "DEBUG"
-}
+
 def calcular_diversidade(populacao:list):
     """
     Calcula a diversidade da população com base na variação de genes.
@@ -54,8 +45,8 @@ def gerar_populacao_inicial(turmas:pd.DataFrame, professores:pd.DataFrame, profe
     """
     try:
         populacao = []
-        tam = CONFIG["populacao_inicial"]
-        k_max_tentativas = CONFIG.get("max_tentativas", 10)  # Limite de tentativas para evitar duplicados
+        tam = int(get_env("POPULACAO_INICIAL"))
+        k_max_tentativas = int(get_env("MAX_TENTATIVAS"))  # Limite de tentativas para evitar duplicados
 
         logging.info(f"-> Gerando População Inicial --> Tamanho: {tam}")
 

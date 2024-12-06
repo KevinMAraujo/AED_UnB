@@ -3,14 +3,14 @@ import time
 import logging
 import random
 from datetime import datetime
-from utils.setup import configurar_log, CONFIG, registrar_individuo_no_historico, registrar_no_historico
+from utils.setup import configurar_log, registrar_individuo_no_historico, registrar_no_historico
 from utils.setup import salvar_dados_execucao, salvar_evolucao_fitness, salvar_resultado, salvar_tempo_execucao, salvar_configuracao
 from utils.populacao import gerar_populacao_inicial
 from utils.individuo import calcular_fitness, mutar, cruzar, validar_individuo, selecao_torneio
-
+from utils.load_env import get_env
 
 # Algoritmo Genético
-def algoritmo_genetico(professores:pd.DataFrame,  turmas:pd.DataFrame, professor_curso:pd.DataFrame, professor_local:pd.DataFrame, geracoes=CONFIG["geracoes"]):
+def algoritmo_genetico(professores:pd.DataFrame,  turmas:pd.DataFrame, professor_curso:pd.DataFrame, professor_local:pd.DataFrame, geracoes:int=get_env("GERACOES")):
     """
     Executa o algoritmo genético para otimizar a alocação de professores às turmas.
 
@@ -53,8 +53,8 @@ def algoritmo_genetico(professores:pd.DataFrame,  turmas:pd.DataFrame, professor
             #seleção dos pais aleatória ou por torneio
             #pai1, pai2 = random.sample(populacao, 2)
             # Seleção por Torneio
-            pai1 = selecao_torneio(populacao, turmas, professores, CONFIG["tamanho_torneio"])
-            pai2 = selecao_torneio(populacao, turmas, professores, CONFIG["tamanho_torneio"])
+            pai1 = selecao_torneio(populacao, turmas, professores, int(get_env("TAMANHO_TORNEIO")) )
+            pai2 = selecao_torneio(populacao, turmas, professores, int(get_env("TAMANHO_TORNEIO")) )
             contador = 0
 
             # Caso os pais sejam iguais, vamos repetindo até que seja um pai diferente.
@@ -62,7 +62,7 @@ def algoritmo_genetico(professores:pd.DataFrame,  turmas:pd.DataFrame, professor
                 logging.info(f"pai1: {pai1}")
                 logging.info(f"pai2: {pai2}")
                 #selecionando um novo pai2
-                pai2 = selecao_torneio(populacao, turmas, professores, CONFIG["tamanho_torneio"])
+                pai2 = selecao_torneio(populacao, turmas, professores, int(get_env("TAMANHO_TORNEIO")))
                 
                 # se após fazer 100 tentativas de selecionar os pais pelo torneio, eles continuarem sendo iguais
                 # então selecionar o pai2 de forma aleatoria. Sem a necessidade de ter o melhor fitness
@@ -72,14 +72,15 @@ def algoritmo_genetico(professores:pd.DataFrame,  turmas:pd.DataFrame, professor
                     x, pai2 = random.sample(populacao, 2)
                     logging.info(f"-> pai2 random.sample: {pai2}")
                     contador=0
+                    break
                 contador+=1
             
             filho1, filho2 = cruzar(pai1, pai2)
 
-            if random.random() <= CONFIG["prob_mutacao"]:
+            if random.random() <= float(get_env("PROB_MUTACAO")):
                 logging.info(f"Realizando Mutação na geração {geracao+1}")
-                filho1 = mutar(filho1, professores, professor_local, professor_curso, turmas, CONFIG["prob_mutacao"])
-                filho2 = mutar(filho2, professores, professor_local, professor_curso, turmas, CONFIG["prob_mutacao"])
+                filho1 = mutar(filho1, professores, professor_local, professor_curso, turmas, float(get_env("PROB_MUTACAO")) )
+                filho2 = mutar(filho2, professores, professor_local, professor_curso, turmas, float(get_env("PROB_MUTACAO")) )
 
             filho1["fitness"] = calcular_fitness(filho1["individuo"], turmas, professores)
             filho2["fitness"] = calcular_fitness(filho2["individuo"], turmas, professores)
@@ -110,9 +111,9 @@ def algoritmo_genetico(professores:pd.DataFrame,  turmas:pd.DataFrame, professor
             historico = registrar_no_historico(historico, geracao, populacao)
 
             # Garantir que o tamanho da população permaneça fixo
-            if len(populacao) > CONFIG["populacao_inicial"]:
+            if len(populacao) > int(get_env("POPULACAO_INICIAL")):
                 populacao.sort(key=lambda ind: calcular_fitness(ind["individuo"], turmas, professores), reverse=True)
-                populacao = populacao[:CONFIG["populacao_inicial"]]
+                populacao = populacao[:int(get_env("POPULACAO_INICIAL"))]
 
         # Calcular tempo total de execução
         time_end = datetime.now().strftime('%Y%m%d_%H%M%S')
@@ -150,4 +151,4 @@ def algoritmo_genetico(professores:pd.DataFrame,  turmas:pd.DataFrame, professor
     except Exception as e:
         logging.error(f"Erro na execução do algoritmo")
         logging.error(f"Erro Info: {e}")
-        raise{}
+        raise

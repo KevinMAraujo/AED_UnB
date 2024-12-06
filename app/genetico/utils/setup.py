@@ -3,23 +3,7 @@ import logging
 from datetime import datetime, timedelta
 from utils.populacao import calcular_diversidade
 import os
-
-#from dotenv import load_dotenv
-#load_dotenv()
-
-
-### DEPOIS JOGAR PARA O .ENV
-
-CONFIG = {
-    "populacao_inicial": 5,
-    "geracoes": 2,
-    "prob_mutacao": 0.1,
-    "tamanho_torneio": 3,
-    "max_ajustes": 10,
-    "max_tentativas_geracao": 1,
-    "max_tentativas": 1, # Limite de tentativas para evitar duplicados
-    "LOG_LEVEL": "DEBUG"
-}
+from utils.load_env import get_env
 
 def configurar_log(nome_arquivo:str):
     """
@@ -31,18 +15,20 @@ def configurar_log(nome_arquivo:str):
     Return:
         FileHandler
     """
-
-    file_handler = logging.FileHandler(nome_arquivo, mode='w')  # Salva no arquivo
+    diretorio = os.path.abspath(os.path.join(os.path.dirname(__file__), '../logs'))
+    file_path = os.path.join(diretorio, nome_arquivo)
+    
+    file_handler = logging.FileHandler(file_path, mode='w')  # Salva no arquivo
 
     log_format = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
     file_handler.setFormatter(log_format)
     logger = logging.getLogger()
 
-    if CONFIG(["LOG_LEVEL"]) == "DEBUG":
+    if get_env("LOG_LEVEL") == "DEBUG":
         logger.setLevel(logging.DEBUG)
-    elif CONFIG(["LOG_LEVEL"]) == "INFO":
+    elif get_env("LOG_LEVEL") == "INFO":
         logger.setLevel(logging.INFO)
-    elif CONFIG(["LOG_LEVEL"]) == "ERROR":
+    elif get_env("LOG_LEVEL") == "ERROR":
         logger.setLevel(logging.ERROR)
     
     logger.addHandler(file_handler)
@@ -55,7 +41,7 @@ def carregar_dados():
     Carrega os dados de professores, locais, turmas, cursos  a partir de arquivos CSV.
 
     Returns:
-        tuple: DataFrames contendo os dados de professores, locais, turmas, cursos, associações curso-professor e local-professor.
+        tuple: DataFrames contendo os dados de professores, turmas, associações curso-professor e local-professor.
     """
     logging.info("Carregando dados...")
     try:
@@ -100,7 +86,7 @@ def carregar_dados():
 def armazenar_dados_execucao():
     pass
 
-def registrar_no_historico(historico:list, geracao:int, populacao:list, loggin):
+def registrar_no_historico(historico:list, geracao:int, populacao:list):
     """
     Essa função insere toda a população no historico sempre que um novo individuo é gerado,
     mesmo que esse individuo seja "invalido".
@@ -166,11 +152,14 @@ def registrar_individuo_no_historico(historico:list, geracao:int, populacao:list
 
 def salvar_tempo_execucao(nome_file, tempo_total:float):
     try:
-        with open(nome_file, "w") as f:
+        diretorio = os.path.abspath(os.path.join(os.path.dirname(__file__), '../logs'))
+        file_path = os.path.join(diretorio, nome_file)
+        
+        with open(file_path, "w") as f:
             f.write(f"Tempo total de execução: {tempo_total:.2f} segundos\n")
         logging.info(f"Dados do tempo de execução salvos")
     except Exception as e:    
-        logging.info(f'Não foi possivel salvar o arquivo: {nome_file}')
+        logging.info(f'Não foi possivel salvar o arquivo: {file_path}')
 
 # Salvar dados da execução para análise posterior
 def salvar_dados_execucao(historico:list, nome_file):
@@ -181,11 +170,13 @@ def salvar_dados_execucao(historico:list, nome_file):
         historico (list): Lista de dicionários com informações sobre fitness, origem e tempo de criação.
     """
     try:
+        diretorio = os.path.abspath(os.path.join(os.path.dirname(__file__), '../output'))
+        file_path_historico = os.path.join(diretorio, nome_file)
         df = pd.DataFrame(historico)
-        df.to_csv(f"{nome_file}", index=False)
-        logging.info(f"Dados da execução salvos: {nome_file} em CSV")
+        df.to_csv(f"{file_path_historico}", index=False)
+        logging.info(f"Dados da execução salvos: {file_path_historico} em CSV")
     except Exception as e:    
-        logging.info(f'Não foi possivel salvar o arquivo: {nome_file}')
+        logging.info(f'Não foi possivel salvar o arquivo: {file_path_historico}')
 
 
 # Função para salvar dados da evolução do fitness
@@ -197,6 +188,9 @@ def salvar_evolucao_fitness(historico:list, nome_file:str):
     historico (list): Histórico contendo informações sobre fitness, geração e indivíduos.
     """
     try:
+        diretorio = os.path.abspath(os.path.join(os.path.dirname(__file__), '../output'))
+        file_path_historico = os.path.join(diretorio, nome_file)
+
         df_historico = pd.DataFrame(historico)
         # Agrupar por geração e calcular o fitness médio, melhor e pior
         evolucao_fitness = df_historico.groupby('geracao').agg(
@@ -205,14 +199,14 @@ def salvar_evolucao_fitness(historico:list, nome_file:str):
             fitness_pior=('fitness', 'min'), 
             diversidade=('diversidade','mean')
             ).reset_index()
-        evolucao_fitness.to_csv(nome_file, index=False)
-        logging.info(f"Evolução do fitness salva em {nome_file}")
+        evolucao_fitness.to_csv(file_path_historico, index=False)
+        logging.info(f"Evolução do fitness salva em {file_path_historico}")
     
     except Exception as e:    
         logging.info(f'Erro ao salvar a evolução do fitness')
 
 # Salvar resultado em CSV
-def salvar_resultado(resultado, nome_arquivo):
+def salvar_resultado(resultado, nome_arquivo:str):
     """
     Salva o resultado da alocação de professores em um arquivo CSV.
 
@@ -220,24 +214,30 @@ def salvar_resultado(resultado, nome_arquivo):
         resultado (dict): Dicionário com a alocação final de professores por turma.
         nome_arquivo (str): Nome do arquivo CSV a ser criado.
     """
+    diretorio = os.path.abspath(os.path.join(os.path.dirname(__file__), '../output'))
+    file_path = os.path.join(diretorio, nome_arquivo)
+    
     df = pd.DataFrame(list(resultado.items()), columns=['IDTURMA', 'IDPROFESSOR'])
-    df.to_csv(nome_arquivo, index=False)
-    logging.info(f"Resultado salvo no arquivo: {nome_arquivo}")
+    df.to_csv(file_path, index=False)
+    logging.info(f"Resultado salvo no arquivo: {file_path}")
 
-def salvar_configuracao(nome_file, time_start, tempo_total):
+def salvar_configuracao(nome_file:str, time_start:float, tempo_total:float):
     try:
-        with open(nome_file, "w") as f:
-            f.write(f"populacao_inicial: {CONFIG['populacao_inicial']}\n")
-            f.write(f"geracoes: {CONFIG['geracoes']}\n")
-            f.write(f"prob_mutacao: {CONFIG['prob_mutacao']}\n")
-            f.write(f"tamanho_torneio: {CONFIG['tamanho_torneio']}\n")
-            f.write(f"max_ajustes: {CONFIG['max_ajustes']}\n")
-            f.write(f"max_tentativas: {CONFIG['max_tentativas']}\n")            
+        diretorio = os.path.abspath(os.path.join(os.path.dirname(__file__), '../output'))
+        file_path = os.path.join(diretorio, nome_file)
+
+        with open(file_path, "w") as f:
+            f.write(f"POPULACAO_INICIAL: {get_env('POPULACAO_INICIAL')}\n")
+            f.write(f"GERACOES: {get_env('GERACOES')}\n")
+            f.write(f"PROB_MUTACAO: {get_env('PROB_MUTACAO')}\n")
+            f.write(f"TAMANHO_TORNEIO: {get_env('TAMANHO_TORNEIO')}\n")
+            f.write(f"MAX_AJUSTES: {get_env('MAX_AJUSTES')}\n")
+            f.write(f"MAX_TENTATIVAS: {get_env('MAX_TENTATIVAS')}\n")            
             f.write(f"Inicio execução: {time_start:.2f} segundos\n")
             f.write(f"Tempo total de execução: {tempo_total:.2f} segundos\n")
             
         logging.info(f"Dados do tempo de execução salvos")
     except Exception as e:    
-        logging.info(f'Não foi possivel salvar o arquivo: {nome_file}')
+        logging.info(f'Não foi possivel salvar o arquivo: {file_path}')
 
         

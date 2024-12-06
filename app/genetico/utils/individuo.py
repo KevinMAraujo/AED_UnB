@@ -2,7 +2,7 @@ import pandas as pd
 import random
 import time
 import logging
-from professor import selecionar_professor
+from .professor import selecionar_professor
 from utils.load_env import get_env
 
 def calcular_fitness(individuo:dict, turmas:pd.DataFrame, professores:pd.DataFrame):
