@@ -37,7 +37,7 @@ def main():
             continue
         
         print(f'Iniciando execução do algoritmo genetico com {turmas.shape[0]} turmas.')
-        populacao, melhor_individuo, historico = algoritmo_genetico(professores, turmas, professor_curso, professor_local, geracoes=int(get_env('GERACOES')) )
+        populacao, melhor_individuo, historico = algoritmo_genetico(professores, turmas, professor_curso, professor_local,nome_arquivo=None, geracoes=int(get_env('GERACOES')) )
         break
     print('**********************************')
     print(f'Finalizando a execução do item escolhido: {escolha}')

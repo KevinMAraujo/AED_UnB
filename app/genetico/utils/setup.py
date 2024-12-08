@@ -233,8 +233,8 @@ def salvar_configuracao(nome_file:str, time_start:float, tempo_total:float):
             f.write(f"TAMANHO_TORNEIO: {get_env('TAMANHO_TORNEIO')}\n")
             f.write(f"MAX_AJUSTES: {get_env('MAX_AJUSTES')}\n")
             f.write(f"MAX_TENTATIVAS: {get_env('MAX_TENTATIVAS')}\n")            
-            f.write(f"Inicio execução: {time_start:.2f} segundos\n")
-            f.write(f"Tempo total de execução: {tempo_total:.2f} segundos\n")
+            f.write(f"Inicio execucao: "+str(time_start/60)+" minutos\n")
+            f.write(f"Tempo total de execucao: "+str(tempo_total/60)+" minutos\n")
             
         logging.info(f"Dados do tempo de execução salvos")
     except Exception as e:    

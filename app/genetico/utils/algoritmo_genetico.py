@@ -10,7 +10,7 @@ from utils.individuo import calcular_fitness, mutar, cruzar, validar_individuo, 
 from utils.load_env import get_env
 
 # Algoritmo Genético
-def algoritmo_genetico(professores:pd.DataFrame,  turmas:pd.DataFrame, professor_curso:pd.DataFrame, professor_local:pd.DataFrame, geracoes:int=get_env("GERACOES")):
+def algoritmo_genetico(professores:pd.DataFrame,  turmas:pd.DataFrame, professor_curso:pd.DataFrame, professor_local:pd.DataFrame, file_name:str=None, geracoes:int=get_env("GERACOES")):
     """
     Executa o algoritmo genético para otimizar a alocação de professores às turmas.
 
@@ -47,8 +47,8 @@ def algoritmo_genetico(professores:pd.DataFrame,  turmas:pd.DataFrame, professor
         historico_individuos = registrar_individuo_no_historico([], 0, populacao, 'normal')
         logging.info(f"-> Gerações : {geracoes} ---")
         
-        for geracao in range(geracoes):
-            logging.info(f"Processando geração {geracao + 1}...")
+        for geracao in range(1,geracoes+1):
+            logging.info(f"Processando geração {geracao}...")
             novos_individuos = []
             #seleção dos pais aleatória ou por torneio
             #pai1, pai2 = random.sample(populacao, 2)
@@ -89,9 +89,9 @@ def algoritmo_genetico(professores:pd.DataFrame,  turmas:pd.DataFrame, professor
             # Ajustar e inserir os novos indivíduos na população
             for novo_ind in novos_individuos:        
                 # Verificando se o filho gerado já existe na população
-                duplicado = any(novo_ind == ind["individuo"] for ind in populacao)
+                duplicado = any(novo_ind['individuo'] == ind["individuo"] for ind in populacao)
                 if duplicado:
-                    logging.info(f"Indivíduo Duplicado: {novo_ind['individuo']:.2f}")
+                    logging.info(f"Indivíduo Duplicado: {novo_ind['individuo']}")
                     historico_individuos = registrar_individuo_no_historico(historico_individuos, geracao, [novo_ind], 'duplicado')
                     continue
                 elif validar_individuo(novo_ind, turmas, professores, professor_local, professor_curso) == False:
@@ -121,26 +121,40 @@ def algoritmo_genetico(professores:pd.DataFrame,  turmas:pd.DataFrame, professor
         
         logging.info(f"Tempo total de execução: {(tempo_total/60):.2f} minutos")
         
-        arquivo_info = "informacoes_de_execucao_"+str(time_start)+".txt"
+        if file_name is not None:
+            arquivo_info  = "informacoes_de_execucao_"+file_name+".txt"
+            arquivo_tempo_execucao = "tempo_execucao_"+file_name+".txt"
+            arquivo_historico_execucao = "historico_execucao_"+file_name+".csv"
+            arquivo_historico_individuo = "historico_individuos_"+file_name+".csv"
+            arquivo_evolucao_fitness = "evolucao_fitness_"+file_name+".csv"
+            arquivo_melhor_ind = "resultado_final_melhor_"+file_name+".csv"
+            arquivo_pior_ind = "resultado_final_pior_"+file_name+".csv"
+        else:
+            arquivo_info = "informacoes_de_execucao_"+str(time_start)+".txt"
+            arquivo_tempo_execucao = "tempo_execucao_"+str(time_start)+".txt"
+            arquivo_historico_execucao = 'historico_execucao_'+str(time_start)+'.csv'
+            arquivo_historico_individuo = f'historico_individuos_'+str(time_start)+'.csv'
+            arquivo_evolucao_fitness = f'evolucao_fitness_'+str(time_start)+'.csv'
+            arquivo_melhor_ind = f"resultado_final_melhor_"+str(time_start)+".csv"
+            arquivo_pior_ind = f"resultado_final_pior_"+str(time_start)+".csv"
 
-        
-        salvar_tempo_execucao(f"tempo_execucao_{time_start}.txt", time_end)
-        
+        salvar_tempo_execucao(arquivo_tempo_execucao, time_end)
+
         # Salvar os resultados
         print('salvando dados da execução')
         salvar_configuracao(arquivo_info, time_start, tempo_total)
-        salvar_dados_execucao(historico,f'historico_execucao_{time_start}.csv')
-        salvar_dados_execucao(historico_individuos,f'historico_individuos_{time_start}.csv')
-        
+        salvar_dados_execucao(historico,arquivo_historico_execucao)
+        salvar_dados_execucao(historico_individuos,arquivo_historico_individuo)
+
         print('salvar_evolucao_fitness')
-        salvar_evolucao_fitness(historico, f'evolucao_fitness_{time_start}.csv')
+        salvar_evolucao_fitness(historico, arquivo_evolucao_fitness)
 
         melhor_individuo = max(populacao, key=lambda ind: ind["fitness"])
         pior_individuo = min(populacao, key=lambda ind: ind["fitness"])
-        
+
         print('salvar_resultado')
-        salvar_resultado(melhor_individuo["individuo"], f"resultado_final_melhor_{time_start}.csv")
-        salvar_resultado(pior_individuo["individuo"], f"resultado_final_pior_{time_start}.csv")
+        salvar_resultado(melhor_individuo["individuo"], arquivo_melhor_ind)
+        salvar_resultado(pior_individuo["individuo"], arquivo_pior_ind)
 
         logging.info("Histórico salvo ao final!")
 
