@@ -2,7 +2,7 @@ import os
 import sys
 
 from utils.csvload import load_csv_data
-from utils.algorithm import backtrack_allocation
+from utils.algorithm import Backtracker
 
 def main():
     """
@@ -43,17 +43,16 @@ def main():
     print(f'Iniciando execução de backtracking com {len(turmas)} turmas e {len(professores)} professores.')
 
     # Inicializa a alocação
-    allocation = {prof["IDPROFESSOR"]: {"schedule": [], "turmas": []} for prof in professores}
+    backtracker = Backtracker(turmas, professores, 10000)
+    receita, allocation, fitness = backtracker.allocate()
 
-    max_revenue = [float("-inf"), None, None]  # Armazena a receita máxima e a alocação correspondente
-    backtrack_allocation(turmas, professores, turmas, allocation, max_revenue, 0)
 
     print('**********************************')
     print(f'Finalizando a execução do item escolhido: {escolha}')
-    print(f"Receita máxima: {max_revenue[0]}")
-    print(f"Fitness: {max_revenue[2]}")
+    print(f"Receita máxima: {receita}")
+    print(f"Fitness: {fitness}")
     print("Alocação:")
-    for prof_id, data in max_revenue[1].items():
+    for prof_id, data in allocation.items():
         print(f"Professor {prof_id}: Turmas {data['turmas']}")
 
 
