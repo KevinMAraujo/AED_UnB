@@ -53,7 +53,7 @@ def load_csv_data(prefix=''):
             professor_local.setdefault(int(row["IDPROFESSOR"]), []).append(int(row["IDLOCAL"]))
 
     for professor in professores:
-        professor["cursos"] = professor_curso.get(professor["IDPROFESSOR"], [])
-        professor["locais"] = professor_local.get(professor["IDPROFESSOR"], [])
+        professor["cursos"] = set(professor_curso.get(professor["IDPROFESSOR"], []))
+        professor["locais"] = set(professor_local.get(professor["IDPROFESSOR"], []))
 
     return turmas, professores
