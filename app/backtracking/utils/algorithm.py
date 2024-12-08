@@ -28,10 +28,13 @@ def calculate_class_balance(class_info, professor_hourly_rate):
     class_hours = class_info["CH_MINUTOS_MES"] / 60
     return class_info["RECEITA"] - (class_hours * professor_hourly_rate)
 
+
+iterations = -1
 def backtrack_allocation(all_classes, professors, classes, allocation, max_revenue, current_revenue):
     """
     Resolve o problema de alocação de professores em turmas usando backtracking.
 
+    :param all_classes: Lista de todas as turmas, alocadas ou não.
     :param professors: Lista de professores com informações como carga horária e locais.
     :param classes: Lista de turmas disponíveis para alocação.
     :param allocation: Dicionário da alocação atual {professor_id: [turma_id]}.
@@ -39,12 +42,14 @@ def backtrack_allocation(all_classes, professors, classes, allocation, max_reven
     :param current_revenue: Receita atual para a solução parcial.
     :return: Receita máxima e a alocação correspondente.
     """
+    global iterations
     if not classes:  # Base do backtracking
         if current_revenue > max_revenue[0]:
             max_revenue[0] = current_revenue
             max_revenue[1] = copy.deepcopy(allocation)
             max_revenue[2] = calculate_fitness(allocation, all_classes, professors)
             print(f'solution found {max_revenue[0]:.2f} {max_revenue[2]:.4f}')
+        iterations -= 1
         return
 
     class_info = classes[0]  # Próxima turma
@@ -66,6 +71,9 @@ def backtrack_allocation(all_classes, professors, classes, allocation, max_reven
         allocation[prof_id]["turmas"].append(class_info["IDTURMA"])
 
         backtrack_allocation(all_classes, professors, remaining_classes, allocation, max_revenue, current_revenue + class_balance)
+
+        if iterations == 0:
+            return
 
         # Desfaz a alocação para explorar outras possibilidades
         allocation[prof_id]["schedule"].pop()
