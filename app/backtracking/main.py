@@ -43,13 +43,12 @@ def main():
     print(f'Iniciando execução de backtracking com {len(turmas)} turmas e {len(professores)} professores.')
 
     # Inicializa a alocação
-    backtracker = Backtracker(turmas, professores, 10000)
-    receita, allocation, fitness = backtracker.allocate()
+    backtracker = Backtracker(turmas, professores, 1000000)
+    fitness, allocation = backtracker.allocate()
 
 
     print('**********************************')
     print(f'Finalizando a execução do item escolhido: {escolha}')
-    print(f"Receita máxima: {receita}")
     print(f"Fitness: {fitness}")
     print("Alocação:")
     for prof_id, data in allocation.items():

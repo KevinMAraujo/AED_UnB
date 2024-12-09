@@ -18,18 +18,6 @@ def has_time_conflict(schedule, start, end, days):
     return False
 
 
-def calculate_class_balance(class_info, professor_hourly_rate):
-    """
-    Calcula o saldo de uma turma dada a receita e o custo do professor.
-
-    :param class_info: Dicionário com informações da turma.
-    :param professor_hourly_rate: Valor por hora do professor.
-    :return: Saldo da turma.
-    """
-    class_hours = class_info["CH_MINUTOS_MES"] / 60
-    return class_info["RECEITA"] - (class_hours * professor_hourly_rate)
-
-
 @dataclass
 class Backtracker:
     """
@@ -48,31 +36,30 @@ class Backtracker:
 
     def allocate(self):
         allocation = {prof["IDPROFESSOR"]: {"schedule": [], "turmas": []} for prof in self.professors}
-        max_revenue = [float("-inf"), None, None]  # Armazena a receita máxima e a alocação correspondente
+        max_fitness = [float("-inf"), None]  # Armazena a receita máxima e a alocação correspondente
 
-        return self._allocate(self.classes, allocation, max_revenue, 0)
+        return self._allocate(self.classes, allocation, max_fitness)
 
-    def _allocate(self, classes, allocation, max_revenue, current_revenue):
+    def _allocate(self, classes, allocation, max_fitness):
         """
         Resolve o problema de alocação de professores em turmas usando backtracking.
 
         :param classes: Lista de turmas ainda disponíveis para alocação.
         :param allocation: Dicionário da alocação atual {professor_id: [turma_id]}.
-        :param max_revenue: Receita máxima até o momento.
-        :param current_revenue: Receita atual para a solução parcial.
+        :param max_fitness: Receita máxima até o momento.
         :return: Receita máxima e a alocação correspondente.
         """
         if self.iterations == 0:
-            return max_revenue
+            return max_fitness
 
         if not classes:  # Base do backtracking
-            if current_revenue > max_revenue[0]:
-                max_revenue[0] = current_revenue
-                max_revenue[1] = copy.deepcopy(allocation)
-                max_revenue[2] = calculate_fitness(allocation, self.classes, self.professors)
-                print(f'solution found {max_revenue[0]:.2f} {max_revenue[2]:.4f}')
+            fitness = calculate_fitness(allocation, self.classes, self.professors)
+            if fitness > max_fitness[0]:
+                max_fitness[0] = fitness
+                max_fitness[1] = copy.deepcopy(allocation)
+                print(f'solution found {fitness:.4f}')
             self.iterations -= 1
-            return max_revenue
+            return max_fitness
 
         class_info = classes[0]  # Próxima turma
         remaining_classes = classes[1:]
@@ -88,14 +75,13 @@ class Backtracker:
                 continue
 
             # Calcula o saldo da turma se este professor for alocado
-            class_balance = calculate_class_balance(class_info, professor["VALORHORA"])
             allocation[prof_id]["schedule"].append((class_info["start_time"], class_info["end_time"], class_info["days"]))
             allocation[prof_id]["turmas"].append(class_info["IDTURMA"])
 
-            max_revenue = self._allocate(remaining_classes, allocation, max_revenue, current_revenue + class_balance)
+            self._allocate(remaining_classes, allocation, max_fitness)
 
             # Desfaz a alocação para explorar outras possibilidades
             allocation[prof_id]["schedule"].pop()
             allocation[prof_id]["turmas"].pop()
         # Caso sem alocar a turma
-        return self._allocate(remaining_classes, allocation, max_revenue, current_revenue)
+        return self._allocate(remaining_classes, allocation, max_fitness)
