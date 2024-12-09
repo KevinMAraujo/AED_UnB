@@ -85,13 +85,15 @@ def gerar_graficos_resultado_liquido_turma(resultados:pd.DataFrame=None, nome_fi
     media = resultados['ResultadoLiquido'].mean()
     min = resultados['ResultadoLiquido'].min()
     resultado_final = resultados['ResultadoLiquido'].sum()
+    max = resultados['ResultadoLiquido'].max()
     plt.figure(figsize=(10, 6))
-    plt.plot(resultados.sort_values(by='IDTURMA').reset_index()['index'], resultados['ResultadoLiquido'], color='blue', label=f'Resultado Líquido: {resultado_final:.2f}')
+    plt.plot(resultados.sort_values(by='IDTURMA').reset_index()['index'], resultados['ResultadoLiquido'], color='blue')
+    plt.plot(max, color='blue', label=f'Maior Resultado Líquido: {max:.2f}')
     plt.axhline(media, color='green', linestyle='--', label=f'Média Resultado Líquido: {media:.2f}')
     plt.axhline(min, color='yellow', linestyle='--', label=f'Menor Resultado Líquido: {min:.2f}')
     plt.axhline(desvio_padrao, color='purple', linestyle='-.', label=f'Desvio Padrão:{desvio_padrao:.2f}')
     plt.title('Resultado Líquido por Turma')
-    plt.xlabel('IdTurmas')
+    plt.xlabel('Turmas')
     plt.ylabel('Resultado Líquido')
     plt.legend()
     plt.grid(True)
@@ -99,6 +101,7 @@ def gerar_graficos_resultado_liquido_turma(resultados:pd.DataFrame=None, nome_fi
 
     #plt.show()
     plt.close()
+    return nome_fig, min, media, desvio_padrao,  max
 
 def gerar_graficos_carga_horario_professor(carga_horaria_professor:pd.DataFrame=None, nome_fig:str=None):
     """
@@ -145,6 +148,7 @@ def gerar_graficos_carga_horario_professor(carga_horaria_professor:pd.DataFrame=
     plt.savefig(nome_fig)
     #plt.show()
     plt.close()
+    return nome_fig, min_ch, media_ch, desvio , max_ch
 
 def gerar_graficos_quantidade_turmas_professor(quantidade_turmas_professor:pd.DataFrame=None, nome_fig:str=None):
     """
@@ -179,7 +183,6 @@ def gerar_graficos_quantidade_turmas_professor(quantidade_turmas_professor:pd.Da
 
     plt.figure(figsize=(10, 6))
     plt.bar(quantidade_turmas_professor.sort_values(by='IDPROFESSOR').reset_index()['index'], quantidade_turmas_professor['QuantidadeTurmas'], label='Quantidade de Turmas')
-    plt.axhline(quantidade_turmas_professor['QuantidadeTurmas'].mean(), color='blue', linestyle='--', label='Média Quantidade de Turmas')
     plt.axhline(max_td, color='red', linestyle='--', label=f'Maior Qtd. de Turmas: {max_td:.2f}')
     plt.axhline(media_td, color='orange', linestyle='--', label=f'Média de Turmas por professor: {media_td:.2f}')
     plt.axhline(min_td, color='yellow', linestyle='--', label=f'Menor Qtd. de Turmas: {min_td:.2f}')
@@ -193,3 +196,4 @@ def gerar_graficos_quantidade_turmas_professor(quantidade_turmas_professor:pd.Da
     plt.savefig(nome_fig)
     #plt.show()
     plt.close()
+    return nome_fig, min_td, media_td,desvio, max_td
