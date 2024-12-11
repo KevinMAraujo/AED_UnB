@@ -80,12 +80,6 @@ def carregar_dados():
         logging.error(f"Erro ao carregar dados: {e}")
         raise
 
-
-
-
-def armazenar_dados_execucao():
-    pass
-
 def registrar_no_historico(historico:list, geracao:int, populacao:list):
     """
     Essa função insere toda a população no historico sempre que um novo individuo é gerado,

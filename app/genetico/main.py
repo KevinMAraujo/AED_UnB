@@ -41,7 +41,7 @@ def main():
         break
     print('**********************************')
     print(f'Finalizando a execução do item escolhido: {escolha}')
-    return populacao, melhor_individuo, historico
+    #return populacao, melhor_individuo, historico
 
 
 if __name__=="__main__":
