@@ -29,7 +29,7 @@ def intervalo_confianca(cenario:str, fitness:list):# Resultados do melhor fitnes
         "desvio_padrao":desvio_padrao,
         "erro_padrao":erro_padrao,
         "nivel_confianca": nivel_confianca,
-        "intervalo_de_confiança_": [round(intervalo_confianca[0],2), round(intervalo_confianca[1])]
+        "intervalo_de_confiança_": [round(intervalo_confianca[0],2), round(intervalo_confianca[1],2)]
     }
 
 def melhor_fitness(nome_cenario:str, arquivo_path:str):
@@ -79,15 +79,18 @@ for subpasta, x, arquivos in os.walk(diretorio):
             
             if arquivo.startswith("evolucao_fitness_"):
                 pass
-            elif arquivo.startswith("historico_execucao_"):                
-                resultados_testes.append(melhor_fitness)            
+            elif arquivo.startswith("historico_execucao_"): 
+                indice = subpasta.rfind("\\") # Encontrar a posição da última barra invertida, por isso 'r'
+                cenario = subpasta[indice + 1:]              
+                resultados_testes.append(melhor_fitness(cenario, caminho_arquivo))            
 
 df_resultados_testes = pd.DataFrame(resultados_testes)
+print(df_resultados_testes.head())
 resultados = []
 cenario = ['full','medio','pequeno','micro']
 for c in cenario:
     filtro = (df_resultados_testes["tipo"]==c)
-    resultados.append(intervalo_confianca(c, df_resultados_testes['fitness'][filtro]))
+    resultados.append(intervalo_confianca(c, df_resultados_testes['fitness'][filtro].to_list()))
 
 df_resultados = pd.DataFrame(resultados)
 df_resultados.to_csv(os.path.join(diretorio, "resultados_intervalo_confianca.csv"), index=False)     
