@@ -9,8 +9,8 @@ def intervalo_confianca(cenario:str, fitness:list):# Resultados do melhor fitnes
     
     nivel_confianca = 0.95 # Nível de confiança desejado (95%)
 
-    media = np.mean(resultados)
-    desvio_padrao = np.std(resultados, ddof=1) #desvio padrão, ddof=1 para amostra
+    media = np.mean(fitness)
+    desvio_padrao = np.std(fitness, ddof=1) #desvio padrão, ddof=1 para amostra
 
     # erro padrão da média
     erro_padrao = desvio_padrao / np.sqrt(n_execucoes)
@@ -85,7 +85,7 @@ for subpasta, x, arquivos in os.walk(diretorio):
                 resultados_testes.append(melhor_fitness(cenario, caminho_arquivo))            
 
 df_resultados_testes = pd.DataFrame(resultados_testes)
-print(df_resultados_testes.head())
+
 resultados = []
 cenario = ['full','medio','pequeno','micro']
 for c in cenario:
