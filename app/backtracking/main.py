@@ -11,19 +11,20 @@ def main():
     Função principal que carrega os dados, processa as entradas e executa o algoritmo de backtracking.
     """
         # Create an argument parser
-    parser = argparse.ArgumentParser(description="Process the number of iterations.")
-    parser.add_argument("--iterations", type=int, required=True, help="Number of iterations")
+    parser = argparse.ArgumentParser(description="Process the number of iteracoes.")
+    parser.add_argument("--iteracoes", type=int, required=False, help="Número de iterações")
+    parser.add_argument("--cenario", type=str, required=False, help="Cenário (1, 2, 3 ou 4)")
 
     # Parse the arguments
     args = parser.parse_args()
 
-    # Get the iterations value
-    iterations = args.iterations
+    # Get the iteracoes value
+    iteracoes = args.iteracoes
+    cenario = args.cenario
 
     turmas, professores = load_csv_data(os.path.abspath(os.path.join(os.path.dirname(__file__), '../data')) +'/')
 
-    escolha =''
-    while True:
+    while cenario not in ['0', '1', '2', '3', '4']:
         print('********** Algoritmo Genetico para seleção de professores nas turmas **********')
         print('-- Deseja executar o algoritmo para qual cenário? Escolha uma opção:')
         print(f'-- 1 - Micro.')
@@ -31,26 +32,27 @@ def main():
         print(f'-- 3 - Médio.')
         print(f'-- 4 - Grande/Completo.')
         print(f'-- 0 - Encerrar')
-        escolha = input('-- Escolha uma opção:')
-        if escolha == '0':
+        cenario = input('-- Escolha uma opção:')
+        if cenario not in ['0', '1', '2', '3', '4']:
+            print('***** Opção invalida, tente novamente.')
+            continue
+
+        if cenario == '0':
             sys.exit()
-        elif escolha == '1':
+        elif cenario == '1':
             turmas = [t for t in turmas if t['IDLOCAL'] == 3]
             professores = [p for p in professores if p['locais'] & {3}]
             break
-        elif escolha == '2':
+        elif cenario == '2':
             turmas = [t for t in turmas if t['IDLOCAL'] in {3, 9}]
             professores = [p for p in professores if p['locais'] & {3, 9}]
             break
-        elif escolha == '3':
+        elif cenario == '3':
             turmas = [t for t in turmas if t['IDLOCAL'] in {3, 4, 5, 8, 9}  ]
             professores = [p for p in professores if p['locais'] & {3, 4, 5, 8, 9}]
             break
-        elif escolha == '4':
+        elif cenario == '4':
             break
-        else:
-            print('***** Opção invalida, tente novamente.')
-            continue
 
     print(f'Iniciando execução de backtracking com {len(turmas)} turmas e {len(professores)} professores.')
 
@@ -59,12 +61,12 @@ def main():
     random.shuffle(professores)
 
     # Inicializa a alocação
-    backtracker = Backtracker(turmas, professores, iterations)
+    backtracker = Backtracker(turmas, professores, iteracoes)
     fitness, allocation = backtracker.allocate()
 
 
     print('**********************************')
-    print(f'Finalizando a execução do item escolhido: {escolha}')
+    print(f'Finalizando a execução do item escolhido: {cenario}')
     print(f"Fitness: {fitness}")
     print("Alocação:")
     for prof_id, data in allocation.items():
