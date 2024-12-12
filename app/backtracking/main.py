@@ -35,26 +35,24 @@ def main():
         cenario = input('-- Escolha uma opção:')
         if cenario not in ['0', '1', '2', '3', '4']:
             print('***** Opção invalida, tente novamente.')
-            continue
 
-        if cenario == '0':
-            sys.exit()
-        elif cenario == '1':
-            turmas = [t for t in turmas if t['IDLOCAL'] == 3]
-            professores = [p for p in professores if p['locais'] & {3}]
-            break
-        elif cenario == '2':
-            turmas = [t for t in turmas if t['IDLOCAL'] in {3, 9}]
-            professores = [p for p in professores if p['locais'] & {3, 9}]
-            break
-        elif cenario == '3':
-            turmas = [t for t in turmas if t['IDLOCAL'] in {3, 4, 5, 8, 9}  ]
-            professores = [p for p in professores if p['locais'] & {3, 4, 5, 8, 9}]
-            break
-        elif cenario == '4':
-            break
+    if cenario == '0':
+        sys.exit()
+    elif cenario == '1':
+        turmas = [t for t in turmas if t['IDLOCAL'] == 3]
+        professores = [p for p in professores if p['locais'] & {3}]
+    elif cenario == '2':
+        turmas = [t for t in turmas if t['IDLOCAL'] in {3, 9}]
+        professores = [p for p in professores if p['locais'] & {3, 9}]
+    elif cenario == '3':
+        turmas = [t for t in turmas if t['IDLOCAL'] in {3, 4, 5, 8, 9}  ]
+        professores = [p for p in professores if p['locais'] & {3, 4, 5, 8, 9}]
+    elif cenario == '4':
+        pass
 
-    print(f'Iniciando execução de backtracking com {len(turmas)} turmas e {len(professores)} professores.')
+    print(f'Iniciando execução de backtracking em cenário {cenario}:')
+    print(f' {len(turmas)} turmas e {len(professores)} professores.')
+    print(f' iteracoes {iteracoes}')
 
     # "Bagunça" lista para obter resultados diferentes em cada execução
     random.shuffle(turmas)
