@@ -1,5 +1,6 @@
 import os
 import sys
+import argparse
 
 from utils.csvload import load_csv_data
 from utils.algorithm import Backtracker
@@ -8,6 +9,16 @@ def main():
     """
     Função principal que carrega os dados, processa as entradas e executa o algoritmo de backtracking.
     """
+        # Create an argument parser
+    parser = argparse.ArgumentParser(description="Process the number of iterations.")
+    parser.add_argument("--iterations", type=int, required=True, help="Number of iterations")
+
+    # Parse the arguments
+    args = parser.parse_args()
+
+    # Get the iterations value
+    iterations = args.iterations
+
     turmas, professores = load_csv_data(os.path.abspath(os.path.join(os.path.dirname(__file__), '../data')) +'/')
 
     escolha =''
@@ -43,7 +54,7 @@ def main():
     print(f'Iniciando execução de backtracking com {len(turmas)} turmas e {len(professores)} professores.')
 
     # Inicializa a alocação
-    backtracker = Backtracker(turmas, professores, 1000000)
+    backtracker = Backtracker(turmas, professores, iterations)
     fitness, allocation = backtracker.allocate()
 
 
