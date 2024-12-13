@@ -335,29 +335,29 @@ Abaixo apresentamos os gráficos com a evolução do fitness, fitness minimo e m
 
 ##### Pequeno Teste 1 - Quantidade de Turmas por professor 
 
-![Pequeno Teste 1 - Qtd Turmas por professor](assets/img/backtracking/teste_1/qtd_turmas_professor_resultado_melhor_solucao_BT_pequeno.png)
+![Pequeno Teste 1 - Qtd Turmas por professor](assets/img/backtracking/teste_1/qtd_turmas_professor_resultado_melhor_solucao_BT_Pequeno.png)
 
 ##### Pequeno Teste 2 - Quantidade de Turmas por professor
 
-![Pequeno Teste 2 - Qtd Turmas por professor](assets/img/backtracking/teste_2/qtd_turmas_professor_resultado_melhor_solucao_BT_pequeno.png)
+![Pequeno Teste 2 - Qtd Turmas por professor](assets/img/backtracking/teste_2/qtd_turmas_professor_resultado_melhor_solucao_BT_Pequeno.png)
 
 
 ##### Pequeno Teste 1 - Carga Horaria por professor
 
-![Pequeno Teste 1 - Carga Horaria por professor](assets/img/backtracking/teste_1/ch_professor_resultado_melhor_solucao_BT_pequeno.png)
+![Pequeno Teste 1 - Carga Horaria por professor](assets/img/backtracking/teste_1/ch_professor_resultado_melhor_solucao_BT_Pequeno.png)
 
 ##### Pequeno Teste 2 - Carga Horaria por professor
 
-![Pequeno Teste 2 - Qtd Turmas por professor](assets/img/backtracking/teste_2/ch_professor_resultado_melhor_solucao_BT_pequeno.png)
+![Pequeno Teste 2 - Qtd Turmas por professor](assets/img/backtracking/teste_2/ch_professor_resultado_melhor_solucao_BT_Pequeno.png)
 
 
 ##### Pequeno Teste 1 - Resultado Liquido por Turma
 
-![Pequeno Teste 1 - Resultado Liquido por Turma](assets/img/backtracking/teste_1/resultado_liquido_resultado_melhor_solucao_BT_pequeno.png)
+![Pequeno Teste 1 - Resultado Liquido por Turma](assets/img/backtracking/teste_1/resultado_liquido_resultado_melhor_solucao_BT_Pequeno.png)
 
 ##### Pequeno Teste 2 - Resultado Liquido por Turma
 
-![Pequeno Teste 2 - Resultado Liquido por Turma](assets/img/backtracking/teste_2/resultado_liquido_resultado_melhor_solucao_BT_pequeno.png)
+![Pequeno Teste 2 - Resultado Liquido por Turma](assets/img/backtracking/teste_2/resultado_liquido_resultado_melhor_solucao_BT_Pequeno.png)
 
 
 ##### Médio Teste 1 - Quantidade de Turmas por professor 
@@ -433,6 +433,7 @@ Os principais resultados para cada cenário incluem:
 ## Conclusões
 
 - Comparativo entre o Algoritmo Genético e o Backtracking.
+  
 ![Melhor Fitness](assets/img/comparativo_fitness.png)
 ![Tempo de Execução](assets/img/comparativo_tempo_execucao.png)
 ![Menor Receita da Turma](assets/img/comparativo_menor_receita.png)
