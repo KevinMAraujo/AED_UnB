@@ -33,21 +33,12 @@ Abaixo apresentamos os gráficos com a evolução do fitness, fitness minimo e m
 ##### Evolução Fitness pelas gerações
 <table>
   <tr>
-    <th>Teste 1</th>
-    <th>Teste 2</th>
-    <th>Teste 3</th>
-    <th>Teste 4</th>
+    <td><p>Teste 1</p><br><img title="Micro Teste 1" src="assets/img/alg_genetico/historico_execucao_micro_teste_1.png" alt="Micro Teste 1" width="400"/></td>
+    <td><p>Teste 2</p><br><img src="assets/img/alg_genetico/historico_execucao_micro_teste_2.png" alt="Micro Teste 2" width="400"/></td>
   </tr>
   <tr>
-    <td>Alfreds Futterkiste</td>
-    <td>Maria Anders</td>
-    <td>Germany</td>
-  </tr>
-  <tr>
-    <td><img title="Micro Teste 1" src="assets/img/alg_genetico/historico_execucao_micro_teste_1.png" alt="Micro Teste 1" width="400"/></td>
-    <td><img src="assets/img/alg_genetico/historico_execucao_micro_teste_2.png" alt="Micro Teste 2" width="400"/></td>
-    <td><img src="assets/img/alg_genetico/historico_execucao_micro_teste_3.png" alt="Micro Teste 3" width="400"/>/td>
-    <td><img src="assets/img/alg_genetico/historico_execucao_micro_teste_4.png" alt="Micro Teste 4" width="400"/>/td>
+    <td><p>Teste 3</p><br><img src="assets/img/alg_genetico/historico_execucao_micro_teste_3.png" alt="Micro Teste 3" width="400"/>/td>
+    <td><p>Teste 4</p><br><img src="assets/img/alg_genetico/historico_execucao_micro_teste_4.png" alt="Micro Teste 4" width="400"/>/td>
   </tr>
 </table>
 
