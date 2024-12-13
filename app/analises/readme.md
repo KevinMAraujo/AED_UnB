@@ -33,37 +33,46 @@ Abaixo apresentamos os gráficos com a evolução do fitness, fitness minimo e m
 ##### Evolução Fitness pelas gerações
 <table>
   <tr>
-    <td><p>Teste 1</p><br><img title="Micro Teste 1" src="assets/img/alg_genetico/historico_execucao_micro_teste_1.png" alt="Micro Teste 1" width="400"/></td>
-    <td><p>Teste 2</p><br><img src="assets/img/alg_genetico/historico_execucao_micro_teste_2.png" alt="Micro Teste 2" width="400"/></td>
+    <td>
+      <p>Teste 1</p><br><img title="Micro Teste 1" src="assets/img/alg_genetico/historico_execucao_micro_teste_1.png" alt="Micro Teste 1" width="400"/>
+    </td>
+    <td>
+      <p>Teste 2</p><br><img src="assets/img/alg_genetico/historico_execucao_micro_teste_2.png" alt="Micro Teste 2" width="400"/>
+    </td>
   </tr>
   <tr>
-    <td><p>Teste 3</p><br><img src="assets/img/alg_genetico/historico_execucao_micro_teste_3.png" alt="Micro Teste 3" width="400"/>/td>
-    <td><p>Teste 4</p><br><img src="assets/img/alg_genetico/historico_execucao_micro_teste_4.png" alt="Micro Teste 4" width="400"/>/td>
+    <td>
+      <p>Teste 3</p><br><img src="assets/img/alg_genetico/historico_execucao_micro_teste_3.png" alt="Micro Teste 3" width="400"/>
+    </td>
+    <td>
+      <p>Teste 4</p><br><img src="assets/img/alg_genetico/historico_execucao_micro_teste_4.png" alt="Micro Teste 4" width="400"/>
+    </td>
   </tr>
 </table>
-
-###### Micro Teste 3
-<img src="assets/img/alg_genetico/historico_execucao_micro_teste_3.png" alt="Micro Teste 3" width="400"/>
-
-###### Micro Teste 4
-<img src="assets/img/alg_genetico/historico_execucao_micro_teste_4.png" alt="Micro Teste 4" width="400"/>
 
 
 ##### Analises do melhor e pior individuo ao final da ultima geração
 ##### Melhor Individuo
 ##### Micro Teste 1 - Quantidade de Turmas por professor
+<table>
+  <tr>
+    <td>
+      <p>Teste 1</p><br><img src="assets/img/alg_genetico/qtd_turmas_professor_resultado_final_melhor_micro_teste_1.png" alt="Micro Teste 1" width="400"/>
+    </td>
+    <td>
+      <p>Teste 2</p><br><img src="assets/img/alg_genetico/qtd_turmas_professor_resultado_final_melhor_micro_teste_2.png" alt="Micro Teste 2" width="400"/>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p>Teste 3</p><br><img src="assets/img/alg_genetico/qtd_turmas_professor_resultado_final_melhor_micro_teste_3.png" alt="Micro Teste 3" width="400"/>
+    </td>
+    <td>
+      <p>Teste 4</p><br><img src="assets/img/alg_genetico/qtd_turmas_professor_resultado_final_melhor_micro_teste_4.png" alt="Micro Teste 4" width="400"/>
+    </td>
+  </tr>
+</table>
 
-![Micro Teste 1 - Qtd Turmas por professor](assets/img/alg_genetico/qtd_turmas_professor_resultado_final_melhor_micro_teste_1.png)
-
-##### Micro Teste 2 - Quantidade de Turmas por professor
-
-![Micro Teste 2 - Qtd Turmas por professor](assets/img/alg_genetico/qtd_turmas_professor_resultado_final_melhor_micro_teste_2.png)
-##### Micro Teste 3 - Quantidade de Turmas por professor
-
-![Micro Teste 3 - Qtd Turmas por professor](assets/img/alg_genetico/qtd_turmas_professor_resultado_final_melhor_micro_teste_3.png)
-##### Micro Teste 4 - Quantidade de Turmas por professor
-
-![Micro Teste 4 - Qtd Turmas por professor](assets/img/alg_genetico/qtd_turmas_professor_resultado_final_melhor_micro_teste_4.png)
 
 
 ##### Micro Teste 1 - Carga Horaria por professor
