@@ -34,16 +34,16 @@ Abaixo apresentamos os gráficos com a evolução do fitness, fitness minimo e m
 ###### Micro Teste 1
 
 <img src="assets/img/alg_genetico/historico_execucao_micro_teste_1.png" alt="Micro Teste 1" width="400"/>
-![Micro Teste 1](assets/img/alg_genetico/historico_execucao_micro_teste_1.png)
+
 ###### Micro Teste 2
+<img src="assets/img/alg_genetico/historico_execucao_micro_teste_2.png" alt="Micro Teste 2" width="400"/>
 
-![Micro Teste 1](assets/img/alg_genetico/historico_execucao_micro_teste_2.png)
 ###### Micro Teste 3
+<img src="assets/img/alg_genetico/historico_execucao_micro_teste_3.png" alt="Micro Teste 3" width="400"/>
 
-![Micro Teste 1](assets/img/alg_genetico/historico_execucao_micro_teste_3.png)
 ###### Micro Teste 4
+<img src="assets/img/alg_genetico/historico_execucao_micro_teste_4.png" alt="Micro Teste 4" width="400"/>
 
-![Micro Teste 1](assets/img/alg_genetico/historico_execucao_micro_teste_4.png)
 
 ##### Analises do melhor e pior individuo ao final da ultima geração
 ##### Melhor Individuo
