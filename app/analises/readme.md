@@ -161,117 +161,159 @@ Abaixo apresentamos os gráficos com a evolução do fitness, fitness minimo e m
 
 
 
-##### Pequeno Teste 1 - Carga Horaria por professor
+##### Pequeno - Carga Horaria por professor
+<table>
+  <tr>
+    <td>
+      <p>Teste 1</p><br><img src="assets/img/alg_genetico/ch_professor_resultado_final_melhor_pequeno_teste_1.png" alt="Pequeno Teste 1" width="400"/>
+    </td>
+    <td>
+      <p>Teste 2</p><br><img src="assets/img/alg_genetico/ch_professor_resultado_final_melhor_pequeno_teste_2.png" alt="Pequeno Teste 2" width="400"/>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p>Teste 3</p><br><img src="assets/img/alg_genetico/ch_professor_resultado_final_melhor_pequeno_teste_3.png" alt="Pequeno Teste 3" width="400"/>
+    </td>
+    <td>
+      <p>Teste 4</p><br><img src="assets/img/alg_genetico/ch_professor_resultado_final_melhor_pequeno_teste_4.png" alt="Pequeno Teste 4" width="400"/>
+    </td>
+  </tr>
+</table> 
 
-![Pequeno Teste 1 - Carga Horaria por professor](assets/img/alg_genetico/ch_professor_resultado_final_melhor_pequeno_teste_1.png)
+##### Pequeno - Resultado Liquido por Turma
+<table>
+  <tr>
+    <td>
+      <p>Teste 1</p><br><img src="assets/img/alg_genetico/resultado_liquido_resultado_final_melhor_pequeno_teste_1.png" alt="Pequeno Teste 1" width="400"/>
+    </td>
+    <td>
+      <p>Teste 2</p><br><img src="assets/img/alg_genetico/resultado_liquido_resultado_final_melhor_pequeno_teste_2.png" alt="Pequeno Teste 2" width="400"/>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p>Teste 3</p><br><img src="assets/img/alg_genetico/resultado_liquido_resultado_final_melhor_pequeno_teste_3.png" alt="Pequeno Teste 3" width="400"/>
+    </td>
+    <td>
+      <p>Teste 4</p><br><img src="assets/img/alg_genetico/resultado_liquido_resultado_final_melhor_pequeno_teste_4.png" alt="Pequeno Teste 4" width="400"/>
+    </td>
+  </tr>
+</table> 
 
-##### Pequeno Teste 2 - Carga Horaria por professor
-
-![Pequeno Teste 2 - Qtd Turmas por professor](assets/img/alg_genetico/ch_professor_resultado_final_melhor_pequeno_teste_2.png)
-##### Pequeno Teste 3 - Carga Horaria por professor
-
-![Pequeno Teste 3 - Qtd Turmas por professor](assets/img/alg_genetico/ch_professor_resultado_final_melhor_pequeno_teste_3.png)
-##### Pequeno Teste 4 - Carga Horaria por professor
-
-![Pequeno Teste 4 - Qtd Turmas por professor](assets/img/alg_genetico/ch_professor_resultado_final_melhor_pequeno_teste_4.png)
-
-
-##### Pequeno Teste 1 - Resultado Liquido por Turma
-
-![Pequeno Teste 1 - Resultado Liquido por Turma](assets/img/alg_genetico/resultado_liquido_resultado_final_melhor_pequeno_teste_1.png)
-
-##### Pequeno Teste 2 - Resultado Liquido por Turma
-
-![Pequeno Teste 2 - Resultado Liquido por Turma](assets/img/alg_genetico/resultado_liquido_resultado_final_melhor_pequeno_teste_2.png)
-
-##### Pequeno Teste 3 - Resultado Liquido por Turma
-
-![Pequeno Teste 3 - Resultado Liquido por Turma](assets/img/alg_genetico/resultado_liquido_resultado_final_melhor_pequeno_teste_3.png)
-##### Pequeno Teste 4 - Carga Horaria por professor
-
-![Pequeno Teste 4 - Resultado Liquido por Turma](assets/img/alg_genetico/resultado_liquido_resultado_final_melhor_pequeno_teste_4.png)
 
 #### Cenário Médio:
 Abaixo apresentamos os gráficos com a evolução do fitness, fitness minimo e média, desvio padrão e diversidade em cada um dos testes.
 
-##### Evolução Fitness pelas gerações
+##### Medio - Evolução Fitness pelas gerações
+<table>
+  <tr>
+    <td>
+      <p>Teste 1</p><br><img src="assets/img/alg_genetico/historico_execucao_medio_teste_1.png" alt="Médio Teste 1" width="400"/>
+    </td>
+    <td>
+      <p>Teste 2</p><br><img src="assets/img/alg_genetico/historico_execucao_medio_teste_2.png" alt="Médio Teste 2" width="400"/>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p>Teste 3</p><br><img src="assets/img/alg_genetico/historico_execucao_medio_teste_3.png" alt="Médio Teste 3" width="400"/>
+    </td>
+    <td>
+      <p>Teste 4</p><br><img src="assets/img/alg_genetico/historico_execucao_medio_teste_4.png" alt="Médio Teste 4" width="400"/>
+    </td>
+  </tr>
+</table> 
 
-###### Médio Teste 1
-![Médio Teste 1](assets/img/alg_genetico/historico_execucao_medio_teste_1.png)
-###### Médio Teste 2
-
-![Médio Teste 1](assets/img/alg_genetico/historico_execucao_medio_teste_2.png)
-###### Médio Teste 3
-
-![Médio Teste 1](assets/img/alg_genetico/historico_execucao_medio_teste_3.png)
-###### Médio Teste 4
-
-![Médio Teste 1](assets/img/alg_genetico/historico_execucao_medio_teste_4.png)
 
 ##### Analises do melhor e pior individuo ao final da ultima geração
 ##### Melhor Individuo
-##### Médio Teste 1 - Quantidade de Turmas por professor
-
-![Médio Teste 1 - Qtd Turmas por professor](assets/img/alg_genetico/qtd_turmas_professor_resultado_final_melhor_medio_teste_1.png)
-
-##### Médio Teste 2 - Quantidade de Turmas por professor
-
-![Médio Teste 2 - Qtd Turmas por professor](assets/img/alg_genetico/qtd_turmas_professor_resultado_final_melhor_medio_teste_2.png)
-##### Médio Teste 3 - Quantidade de Turmas por professor
-
-![Médio Teste 3 - Qtd Turmas por professor](assets/img/alg_genetico/qtd_turmas_professor_resultado_final_melhor_medio_teste_3.png)
-##### Médio Teste 4 - Quantidade de Turmas por professor
-
-![Médio Teste 4 - Qtd Turmas por professor](assets/img/alg_genetico/qtd_turmas_professor_resultado_final_melhor_medio_teste_4.png)
-
-
-##### Médio Teste 1 - Carga Horaria por professor
-
-![Médio Teste 1 - Carga Horaria por professor](assets/img/alg_genetico/ch_professor_resultado_final_melhor_medio_teste_1.png)
-
-##### Médio Teste 2 - Carga Horaria por professor
-
-![Médio Teste 2 - Qtd Turmas por professor](assets/img/alg_genetico/ch_professor_resultado_final_melhor_medio_teste_2.png)
-##### Médio Teste 3 - Carga Horaria por professor
-
-![Médio Teste 3 - Qtd Turmas por professor](assets/img/alg_genetico/ch_professor_resultado_final_melhor_medio_teste_3.png)
-##### Médio Teste 4 - Carga Horaria por professor
-
-![Médio Teste 4 - Qtd Turmas por professor](assets/img/alg_genetico/ch_professor_resultado_final_melhor_medio_teste_4.png)
+##### Médio - Quantidade de Turmas por professor
+<table>
+  <tr>
+    <td>
+      <p>Teste 1</p><br><img src="assets/img/alg_genetico/qtd_turmas_professor_resultado_final_melhor_medio_teste_1.png" alt="Médio Teste 1" width="400"/>
+    </td>
+    <td>
+      <p>Teste 2</p><br><img src="assets/img/alg_genetico/qtd_turmas_professor_resultado_final_melhor_medio_teste_1.png" alt="Médio Teste 2" width="400"/>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p>Teste 3</p><br><img src="assets/img/alg_genetico/qtd_turmas_professor_resultado_final_melhor_medio_teste_1.png" alt="Médio Teste 3" width="400"/>
+    </td>
+    <td>
+      <p>Teste 4</p><br><img src="assets/img/alg_genetico/qtd_turmas_professor_resultado_final_melhor_medio_teste_1.png" alt="Médio Teste 4" width="400"/>
+    </td>
+  </tr>
+</table> 
 
 
-##### Médio Teste 1 - Resultado Liquido por Turma
+##### Médio - Carga Horaria por professor
+<table>
+  <tr>
+    <td>
+      <p>Teste 1</p><br><img src="assets/img/alg_genetico/ch_professor_resultado_final_melhor_medio_teste_1.png" alt="Médio Teste 1" width="400"/>
+    </td>
+    <td>
+      <p>Teste 2</p><br><img src="assets/img/alg_genetico/ch_professor_resultado_final_melhor_medio_teste_2.png" alt="Médio Teste 2" width="400"/>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p>Teste 3</p><br><img src="assets/img/alg_genetico/ch_professor_resultado_final_melhor_medio_teste_3.png" alt="Médio Teste 3" width="400"/>
+    </td>
+    <td>
+      <p>Teste 4</p><br><img src="assets/img/alg_genetico/ch_professor_resultado_final_melhor_medio_teste_4.png" alt="Médio Teste 4" width="400"/>
+    </td>
+  </tr>
+</table>
 
-![Médio Teste 1 - Resultado Liquido por Turma](assets/img/alg_genetico/resultado_liquido_resultado_final_melhor_medio_teste_1.png)
 
-##### Médio Teste 2 - Resultado Liquido por Turma
-
-![Médio Teste 2 - Resultado Liquido por Turma](assets/img/alg_genetico/resultado_liquido_resultado_final_melhor_medio_teste_2.png)
-
-##### Médio Teste 3 - Resultado Liquido por Turma
-
-![Médio Teste 3 - Resultado Liquido por Turma](assets/img/alg_genetico/resultado_liquido_resultado_final_melhor_medio_teste_3.png)
-##### Médio Teste 4 - Carga Horaria por professor
-
-![Médio Teste 4 - Resultado Liquido por Turma](assets/img/alg_genetico/resultado_liquido_resultado_final_melhor_medio_teste_4.png)
+##### Médio - Resultado Liquido por Turma
+<table>
+  <tr>
+    <td>
+      <p>Teste 1</p><br><img src="assets/img/alg_genetico/resultado_liquido_resultado_final_melhor_medio_teste_1.png" alt="Médio Teste 1" width="400"/>
+    </td>
+    <td>
+      <p>Teste 2</p><br><img src="assets/img/alg_genetico/resultado_liquido_resultado_final_melhor_medio_teste_2.png" alt="Médio Teste 2" width="400"/>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p>Teste 3</p><br><img src="assets/img/alg_genetico/resultado_liquido_resultado_final_melhor_medio_teste_3.png" alt="Médio Teste 3" width="400"/>
+    </td>
+    <td>
+      <p>Teste 4</p><br><img src="assets/img/alg_genetico/resultado_liquido_resultado_final_melhor_medio_teste_4.png" alt="Médio Teste 4" width="400"/>
+    </td>
+  </tr>
+</table>
 
 
 #### Cenário Grande:
 Abaixo apresentamos os gráficos com a evolução do fitness, fitness minimo e média, desvio padrão e diversidade em cada um dos testes.
 
-##### Evolução Fitness pelas gerações
+##### Grande - Evolução Fitness pelas gerações
+<table>
+  <tr>
+    <td>
+      <p>Teste 1</p><br><img src="assets/img/alg_genetico/historico_execucao_full_teste_1.png" alt="Médio Teste 1" width="400"/>
+    </td>
+    <td>
+      <p>Teste 2</p><br><img src="assets/img/alg_genetico/historico_execucao_full_teste_2.png" alt="Médio Teste 2" width="400"/>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p>Teste 3</p><br><img src="assets/img/alg_genetico/historico_execucao_full_teste_3.png" alt="Médio Teste 3" width="400"/>
+    </td>
+    <td>
+      <p>Teste 4</p><br><img src="assets/img/alg_genetico/historico_execucao_full_teste_4.png" alt="Médio Teste 4" width="400"/>
+    </td>
+  </tr>
+</table>
 
-###### Grande Teste 1
-![Grande Teste 1](assets/img/alg_genetico/historico_execucao_full_teste_1.png)
-###### Grande Teste 2
-
-![Grande Teste 1](assets/img/alg_genetico/historico_execucao_full_teste_2.png)
-###### Grande Teste 3
-
-![Grande Teste 1](assets/img/alg_genetico/historico_execucao_full_teste_3.png)
-###### Grande Teste 4
-
-![Grande Teste 1](assets/img/alg_genetico/historico_execucao_full_teste_4.png)
 
 ##### Analises do melhor e pior individuo ao final da ultima geração
 ##### Melhor Individuo
