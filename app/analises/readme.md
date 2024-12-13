@@ -31,12 +31,17 @@ Para cada cenário, realizamos 4 testes independentes, coletando os resultados e
 Abaixo apresentamos os gráficos com a evolução do fitness, fitness minimo e média, desvio padrão e diversidade em cada um dos testes.
 
 ##### Evolução Fitness pelas gerações
-###### Micro Teste 1
 
-<img title="Micro Teste 1" src="assets/img/alg_genetico/historico_execucao_micro_teste_1.png" alt="Micro Teste 1" width="400"/>
-
-###### Micro Teste 2
-<img src="assets/img/alg_genetico/historico_execucao_micro_teste_2.png" alt="Micro Teste 2" width="400"/>
+<div>
+  <div>
+    <p>Micro Teste 1</p>
+    <img title="Micro Teste 1" src="assets/img/alg_genetico/historico_execucao_micro_teste_1.png" alt="Micro Teste 1" width="400"/>
+  </div>
+  <div>
+    <p>Micro Teste 2</p>
+    <img src="assets/img/alg_genetico/historico_execucao_micro_teste_2.png" alt="Micro Teste 2" width="400"/>
+  </div>
+</div>
 
 ###### Micro Teste 3
 <img src="assets/img/alg_genetico/historico_execucao_micro_teste_3.png" alt="Micro Teste 3" width="400"/>
