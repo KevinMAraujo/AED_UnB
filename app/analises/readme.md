@@ -1,4 +1,4 @@
-![Esquemático](images/tables_diagram_highlighted.png)
+
 # Análise e Discussão dos Resultados
 
 ## Introdução
