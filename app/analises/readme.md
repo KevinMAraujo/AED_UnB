@@ -32,7 +32,8 @@ Abaixo apresentamos os gráficos com a evolução do fitness, fitness minimo e m
 
 ##### Evolução Fitness pelas gerações
 ###### Micro Teste 1
-img[alt=Micro Teste 1] { width: 200px; }
+
+<img src="assets/img/alg_genetico/historico_execucao_micro_teste_1.png" alt="Micro Teste 1" width="200"/>
 ![Micro Teste 1](assets/img/alg_genetico/historico_execucao_micro_teste_1.png)
 ###### Micro Teste 2
 
