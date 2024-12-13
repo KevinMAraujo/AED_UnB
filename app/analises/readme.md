@@ -36,8 +36,7 @@ Abaixo apresentamos os gráficos com a evolução do fitness, fitness minimo e m
   <div>
     <p>Micro Teste 1</p>
     <img title="Micro Teste 1" src="assets/img/alg_genetico/historico_execucao_micro_teste_1.png" alt="Micro Teste 1" width="400"/>
-  </div>
-  <div>
+    <br><br>
     <p>Micro Teste 2</p>
     <img src="assets/img/alg_genetico/historico_execucao_micro_teste_2.png" alt="Micro Teste 2" width="400"/>
   </div>
